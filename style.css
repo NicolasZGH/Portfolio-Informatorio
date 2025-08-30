@@ -2,10 +2,11 @@
   /* colors */
   --texto-primario: #dddddd;
   --texto-secundario: #d1d1d1;
+  --texto-terciario: #03270b;
   --fondo-primario: #0f0921;
   --fondo-primario-transparente: #0f092180;
   --fondo-secundario: #0a0c13;
-  --color-primario: #26e245;
+  --color-primario: #1cc037;
   --color-primario-apagado: #2422a3;
   --color-secundario: #9b70f9;
   --color-terciario: #6f6f6f;
@@ -352,7 +353,7 @@ los escribiremos al final (comentarios: enlaces, botones, tarjetas) */
   background-color: var(--color-primario-apagado);
 } */
 .boton_oscuro {
-  color: var(--texto-primario);
+  color: var(--texto-terciario);
   background-color: var(--color-primario);
 }
 /* .boton_oscuro:hover {
