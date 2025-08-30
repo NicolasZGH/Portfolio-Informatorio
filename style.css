@@ -5,7 +5,7 @@
   --texto-terciario: #03270b;
   --fondo-primario: #0f0921;
   --fondo-primario-transparente: #0f092180;
-  --fondo-secundario: #0a0c13;
+  --fondo-secundario: #110644;
   --color-primario: #1cc037;
   --color-primario-apagado: #2422a3;
   --color-secundario: #9b70f9;
@@ -55,11 +55,14 @@ los escribiremos al final (comentarios: enlaces, botones, tarjetas) */
 
 /* encabezado */
 .encabezado {
-  position: absolute;
+  position: fixed; /* 🔹 Hace que siempre esté visible */
   width: 100%;
   left: 0;
   top: 0;
+  z-index: 1000; /* 🔹 Asegura que esté por encima de todo */
+  background-color: var(--fondo-primario); /* 🔹 Fondo sólido para que no se vea raro al hacer scroll */
 }
+
 .navegacion {
   position: sticky;
   top: 0;
@@ -77,18 +80,30 @@ los escribiremos al final (comentarios: enlaces, botones, tarjetas) */
 .navegacion__titulo {
   font-size: var(--titulo-tamanio);
   text-shadow: 2px 2px 2px var(--fondo-secundario);
+  height: 50px;
+  padding-right: 170px;
 }
+
+/* Para que los títulos no queden tapados por la navbar */
+#sobre-mi,
+#proyectos,
+#presentacion {
+  scroll-margin-top: 70px; /* ajusta según el alto de tu navbar */
+}
+
 
 /* principal */
 .principal {
   background-color: var(--fondo-primario);
+  padding-top: 0px; /* 🔹 Espacio para la navbar fija */
 }
+
 
 /* presentacion */
 .presentacion {
   width: 100%;
   height: 100vh;
-  background-image: url("./assets/images/profile/hero-tema-oscuro.jpg");
+  background-image: url("./images/profile/hero-tema-oscuro.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -131,33 +146,34 @@ los escribiremos al final (comentarios: enlaces, botones, tarjetas) */
 /* articulo */
 .articulo {
   width: 100%;
-  height: 100vh;
   padding: 2rem 10rem;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   gap: 1rem;
+  min-height: 100vh; /* OPCIONAL: asegura al menos el alto de pantalla */
 }
+
 .sobre_mi {
   background: linear-gradient(
     180deg,
-    rgb(15 8 16) 0%,
-    var(--fondo-primario) 10%,
-    var(--color-primario-apagado) 75%,
-    var(--color-primario) 90%
+    var(--fondo-primario) 0%,          /* Fondo principal arriba */
+    var(--color-primario-apagado) 70%, /* Toque de color */
+    var(--color-primario) 100%         /* Verde en la parte baja */
   );
 }
+
 .proyectos {
   background: linear-gradient(
     180deg,
-    var(--color-primario) 0%,
-    var(--color-primario-apagado) 10%,
-    var(--fondo-primario) 55%
+    var(--color-primario) 0%,           /* Verde al inicio */
+    var(--color-primario-apagado) 30%,  /* Azul intermedio */
+    var(--fondo-primario) 100%          /* Oscuro al fondo */
   );
-  /* eliminar en el video 3 */
   height: max-content;
 }
+
 
 .articulo__titulo {
   font-size: var(--titulo-tamanio);
@@ -433,3 +449,4 @@ los escribiremos al final (comentarios: enlaces, botones, tarjetas) */
 .tarjeta:hover > .tarjeta__contenido {
   opacity: 1;
 } */
+
