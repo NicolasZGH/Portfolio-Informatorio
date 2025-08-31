@@ -204,13 +204,18 @@ los escribiremos al final (comentarios: enlaces, botones, tarjetas) */
   height: 300px;
   width: 300px;
   padding: 10px;
-  background-color: var(--texto-primario);
-  /*   background-color: transparent; */
+  background-color: transparent; 
   cursor: pointer;
 }
 .seccion_descripcion__imagen {
   width: 100%;
   height: 240px;
+  border-radius: 100%;
+  width: 100%;
+  height: 100%;
+  background-color: var(--texto-primario);
+  filter: drop-shadow(0px 0px 6px var(--fondo-secundario));
+  border: 10px solid var(--texto-secundario);
   /* width: 300px;
   height: 300px;
   padding: 10px;
@@ -221,10 +226,10 @@ los escribiremos al final (comentarios: enlaces, botones, tarjetas) */
   left: 50%;
   transform: translateX(-50%); */
   object-fit: cover;
-  /* transition: left 0.3s ease, right 0.3s ease, top 0.3s ease, bottom 0.3s ease,
+  transition: left 0.3s ease, right 0.3s ease, top 0.3s ease, bottom 0.3s ease,
     width 0.3s ease, height 0.3s ease, padding 0.3s ease,
     background-color 0.3s ease, transform 0.3s ease,
-    border-radius 0.1s 0.2s ease; */
+    border-radius 0.1s 0.2s ease; 
 }
 /* .seccion_descripcion__imagen_variante {
   top: auto;
