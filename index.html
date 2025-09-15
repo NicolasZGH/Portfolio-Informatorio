@@ -14,29 +14,44 @@
     <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon" />
   </head>
   <body class="scroll">
-    <header class="encabezado">
-      <nav class="navegacion">
-        <a class="navegacion__enlace" href="#presentacion">
-          <img class="navegacion__titulo" src="./images/logos/informatoriologo.png"
-                alt="logo de informatorio"
-                title="logo de la página Informatorio" />
-        </a>
-        <ul class="enlaces">
-          <li class="enlaces__item">
-            <a class="enlaces__enlace" href="#presentacion">Inicio</a>
-          </li>
-          <li class="enlaces__item">
-            <a class="enlaces__enlace" href="#sobre-mi">Sobre mí</a>
-          </li>
-          <li class="enlaces__item">
-            <a class="enlaces__enlace" href="#proyectos">Proyectos</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
+  <header class="encabezado">
+    <nav class="navegacion">
+      <a class="navegacion__enlace" href="#presentacion">
+        <img class="navegacion__titulo" src="./images/logos/nzlogo.png"
+              alt="logo de informatorio"
+              title="logo de la página Informatorio" />
+      </a>
+      
+      <!-- NUEVO: Botón hamburguesa -->
+      <button class="menu-toggle" aria-label="Abrir menú">
+        <span class="hamburger"></span>
+        <span class="hamburger"></span>
+        <span class="hamburger"></span>
+      </button>
+      
+      <!-- MODIFICADO: Agregar clase menu-items -->
+      <ul class="enlaces menu-items">
+        <li class="enlaces__item">
+          <a class="enlaces__enlace" href="#presentacion">Inicio</a>
+        </li>
+        <li class="enlaces__item">
+          <a class="enlaces__enlace" href="#sobre-mi">Sobre mí</a>
+        </li>
+        <li class="enlaces__item">
+          <a class="enlaces__enlace" href="#proyectos">Proyectos</a>
+        </li>
+                <li class="enlaces__item">
+          <a class="enlaces__enlace" href="#contacto">Contacto</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
     <main class="principal">
       <section class="presentacion" id="presentacion">
         <div class="presentacion__contenedor_info">
+          <div class="presentacion-foto">
+            <img src="./images/profile/hero-tema-oscuro-2.png" class="superpuesta" alt="">
+          </div>
           <h1 class="presentacion__titulo">Soy Desarrollador</h1>
           <p class="presentacion__parrafo">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -420,5 +435,26 @@
         <p>©️Copyright 2024</p>
       </div>
     </footer>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const menuItems = document.querySelector('.menu-items');
+        const enlaces = document.querySelectorAll('.enlaces__enlace');
+
+        menuToggle.addEventListener('click', function() {
+          menuToggle.classList.toggle('active');
+          menuItems.classList.toggle('active');
+        });
+
+        enlaces.forEach(enlace => {
+          enlace.addEventListener('click', function() {
+            menuToggle.classList.remove('active');
+            menuItems.classList.remove('active');
+          });
+        });
+      });
+  </script>
+
   </body>
 </html>

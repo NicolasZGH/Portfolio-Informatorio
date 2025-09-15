@@ -82,7 +82,10 @@ los escribiremos al final (comentarios: enlaces, botones, tarjetas) */
   text-shadow: 2px 2px 2px var(--fondo-secundario);
   height: 50px;
   padding-right: 170px;
+  opacity: 70%;
 }
+
+
 
 /* Para que los títulos no queden tapados por la navbar */
 #sobre-mi,
@@ -101,12 +104,24 @@ los escribiremos al final (comentarios: enlaces, botones, tarjetas) */
 
 /* presentacion */
 .presentacion {
+  position: relative;
   width: 100%;
   height: 100vh;
   background-image: url("./images/profile/hero-tema-oscuro.jpg");
   background-size: cover;
   background-position: center;
 }
+
+.superpuesta {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none; /* para que no interfiera con interacciones */
+}
+
 .presentacion__contenedor_info {
   width: 100%;
   height: 100%;
@@ -215,25 +230,12 @@ los escribiremos al final (comentarios: enlaces, botones, tarjetas) */
   height: 100%;
   background-color: var(--texto-primario);
   filter: drop-shadow(0px 0px 6px var(--fondo-secundario));
-  border: 10px solid var(--texto-secundario);
-  /* width: 300px;
-  height: 300px;
-  padding: 10px;
-  padding-bottom: 50px;
-  background-color: var(--texto-primario);
-  position: absolute;
-  top: 40px;
-  left: 50%;
-  transform: translateX(-50%); */
+  border: 5px solid var(--texto-secundario);
   object-fit: cover;
   transition: left 0.3s ease, right 0.3s ease, top 0.3s ease, bottom 0.3s ease,
     width 0.3s ease, height 0.3s ease, padding 0.3s ease,
     background-color 0.3s ease, transform 0.3s ease,
     border-radius 0.1s 0.2s ease; 
-}
-/* .seccion_descripcion__imagen_variante {
-  top: auto;
-  bottom: 40px;
 }
 
 .seccion_descripcion__imagen:hover {
@@ -243,7 +245,6 @@ los escribiremos al final (comentarios: enlaces, botones, tarjetas) */
   background-color: var(--texto-primario);
   left: 0;
   top: 0;
-  border-radius: 20px;
   transform: translateX(0);
 }
 .seccion_descripcion__imagen_variante:hover {
@@ -456,3 +457,247 @@ los escribiremos al final (comentarios: enlaces, botones, tarjetas) */
   opacity: 1;
 } */
 
+
+/* MENÚ HAMBURGUESA - Añadir después de los estilos de navegación */
+
+/* Botón hamburguesa - oculto por defecto */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1001;
+}
+
+.hamburger {
+  width: 25px;
+  height: 3px;
+  background-color: var(--texto-primario);
+  margin: 3px 0;
+  transition: 0.3s;
+  border-radius: 2px;
+}
+
+/* Animación del botón cuando está activo */
+.menu-toggle.active .hamburger:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.menu-toggle.active .hamburger:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active .hamburger:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* RESPONSIVE DESIGN - MOBILE CON MENÚ HAMBURGUESA */
+
+/* Tablets y pantallas medianas */
+@media screen and (max-width: 768px) {
+  :root {
+    --presentacion-titulo-tamanio: 3rem;
+    --titulo-tamanio: 2.5rem;
+    --sub-titulo-tamanio: 1.5rem;
+    --texto-tamanio: 1rem;
+  }
+
+  .navegacion {
+    padding: 0 1rem;
+    height: 70px;
+  }
+
+  .navegacion__titulo {
+    padding-right: 0;
+    height: 40px;
+  }
+
+  .articulo {
+    padding: 2rem 3rem;
+  }
+
+  .presentacion__contenedor_info {
+    padding: 5%;
+    gap: 2rem;
+  }
+
+  .presentacion__contenedor_botones {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .articulo__contenedor_descripciones {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .contenedor_tarjetas_grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .tarjeta {
+    max-width: 100%;
+    height: 250px;
+  }
+
+  .pie_de_pagina {
+    height: auto;
+    padding: 2rem 1rem;
+  }
+}
+
+/* Móviles - MENÚ HAMBURGUESA */
+@media screen and (max-width: 480px) {
+  :root {
+    --presentacion-titulo-tamanio: 2.5rem;
+    --titulo-tamanio: 2rem;
+    --sub-titulo-tamanio: 1.3rem;
+    --texto-tamanio: 0.9rem;
+    --enlaces-tamanio: 1rem;
+  }
+
+  .navegacion {
+    justify-content: space-between;
+    height: 70px;
+    padding: 0 1rem;
+  }
+
+  .navegacion__titulo {
+    height: 35px;
+  }
+
+  /* Mostrar botón hamburguesa */
+  .menu-toggle {
+    display: flex;
+  }
+
+  /* Menú desplegable */
+  .menu-items {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background-color: var(--fondo-primario);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 2rem;
+    gap: 2rem;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 999;
+    border-top: 1px solid var(--color-primario);
+  }
+
+  /* Menú activo */
+  .menu-items.active {
+    transform: translateX(0);
+  }
+
+  .enlaces__enlace {
+    font-size: 1.5rem;
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid var(--fondo-secundario);
+    transition: background-color 0.3s ease;
+  }
+
+  .enlaces__enlace:hover {
+    background-color: var(--fondo-secundario);
+    color: var(--color-primario);
+  }
+
+  /* Ajustes para el scroll */
+  #sobre-mi,
+  #proyectos,
+  #presentacion {
+    scroll-margin-top: 80px;
+  }
+
+  .principal {
+    padding-top: 70px;
+  }
+
+  .articulo {
+    padding: 2rem 1rem;
+    min-height: auto;
+  }
+
+  .presentacion__contenedor_info {
+    padding: 10%;
+    text-align: center;
+    align-items: center;
+  }
+
+  .presentacion__contenedor_botones {
+    gap: 0.5rem;
+  }
+
+  .boton {
+    width: 160px;
+    height: 45px;
+    font-size: 0.9rem;
+  }
+
+  .seccion_descripcion {
+    padding: 20px;
+    gap: 1rem;
+  }
+
+  .seccion_descripcion__porta_retrato {
+    height: 200px;
+    width: 200px;
+  }
+
+  .seccion_descripcion__info {
+    max-height: 200px;
+    padding: 15px;
+  }
+
+  .seccion_descripcion__titulo {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .tarjeta {
+    flex-direction: column;
+    height: auto;
+    min-height: 300px;
+  }
+
+  .tarjeta__imagen {
+    width: 100%;
+    height: 150px;
+  }
+
+  .tarjeta__contenido {
+    padding: 1rem;
+  }
+
+  .tarjeta__contenido .boton {
+    align-self: center;
+    width: 140px;
+  }
+
+  .pie_de_pagina {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .pie_de_pagina__columna {
+    flex-basis: auto;
+    width: 100%;
+    align-items: center;
+  }
+
+  .enlaces_vertical {
+    align-items: center;
+  }
+}
